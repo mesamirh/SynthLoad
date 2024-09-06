@@ -26,19 +26,28 @@ def download():
     url = request.form['url']
     format_id = request.form['format']
     file_path = download_video(url, format_id)
-    return send_file(file_path, as_attachment=True)
+    if file_path:
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "Error downloading video", 500
 
 @app.route('/download_high_res', methods=['POST'])
 def download_high_res():
     url = request.form['url']
     file_path = download_video(url, 'bestvideo+bestaudio')
-    return send_file(file_path, as_attachment=True)
+    if file_path:
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "Error downloading high-resolution video", 500
 
 @app.route('/download_mp3', methods=['POST'])
 def download_mp3():
     url = request.form['url']
     file_path = download_video(url, 'bestaudio')
-    return send_file(file_path, as_attachment=True)
+    if file_path:
+        return send_file(file_path, as_attachment=True)
+    else:
+        return "Error downloading audio", 500
 
 def get_formats(url):
     ydl_opts = {'listformats': True}
@@ -68,4 +77,4 @@ def download_video(url, format_id):
         return None
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
