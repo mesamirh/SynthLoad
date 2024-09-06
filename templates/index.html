@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SynthLoad</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <style>
+      body {
+        background: radial-gradient(
+          circle at 30% 30%,
+          #020024,
+          #090979,
+          #00d4ff
+        );
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+      }
+      .navbar {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+      .navbar-brand {
+        color: #00fff7;
+        font-size: 2rem;
+        font-weight: bold;
+        text-shadow: 0 0 10px #00fff7;
+      }
+      .card {
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 30px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-10px) scale(1.05);
+      }
+      .card-title {
+        font-size: 2.75rem;
+        font-weight: bold;
+        color: #00f0ff;
+        text-shadow: 0 0 15px #00f0ff;
+      }
+      .form-control {
+        border-radius: 20px;
+        padding: 0.9rem;
+        background: rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+      }
+      .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .btn-primary {
+        border-radius: 30px;
+        padding: 0.75rem;
+        background-color: #12d8fa;
+        color: #fff;
+        font-size: 1.3rem;
+        box-shadow: 0 5px 25px rgba(18, 216, 250, 0.6);
+        transition: all 0.4s ease;
+      }
+      .btn-primary:hover {
+        background-color: #0ba7e0;
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar w-full flex items-center justify-between">
+      <div class="navbar-brand">SynthLoad</div>
+    </nav>
+
+    <div class="container mx-auto mt-16 max-w-lg">
+      <div class="card animate__animated animate__fadeInUp">
+        <h1 class="card-title text-center mb-8">Enter URL to Download</h1>
+        <form action="/formats" method="post" class="space-y-4">
+          <input
+            type="text"
+            name="url"
+            class="form-control w-full p-3"
+            placeholder="Enter URL here"
+            required
+          />
+          <button type="submit" class="btn-primary w-full py-3">
+            Get Formats
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      gsap.from(".card", {
+        duration: 1.5,
+        opacity: 0,
+        y: 50,
+        ease: "power4.out",
+      });
+    </script>
+  </body>
+</html>
